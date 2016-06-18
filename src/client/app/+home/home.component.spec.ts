@@ -38,6 +38,10 @@ export function main() {
             expect(homeInstance.nameListService).toEqual(jasmine.any(NameListService));
             expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(0);
 
+            spyOn(homeInstance.nameListService, 'add').and.callFake((name) => {
+              homeInstance.nameList.push(name);
+            });
+
             homeInstance.newName = 'Minko';
             homeInstance.addName();
 
@@ -52,6 +56,7 @@ export function main() {
 
 @Component({
   providers: [
+    { provide: 'nameList', useValue: [] },
     HTTP_PROVIDERS,
     NameListService,
     BaseRequestOptions,

@@ -322,6 +322,7 @@ export class SeedConfig {
       '@angular/platform-browser': `node_modules/@angular/platform-browser/bundles/platform-browser.umd.js`,
       '@angular/platform-browser-dynamic': `node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js`,
       '@angular/router': `node_modules/@angular/router/index.js`,
+      'ui-router-ng2': `node_modules/ui-router-ng2/_bundles/ui-router-ng2.js`,
       'rxjs/*': `node_modules/rxjs/*`,
       'app/*': `/app/*`,
       '*': `node_modules/*`
@@ -433,7 +434,7 @@ export class SeedConfig {
       open: argv['b'] ? false : true,
       injectChanges: false,
       server: {
-        baseDir: `${this.DIST_DIR}/empty/`,
+        baseDir: `${this.DIST_DIR}/dev/`,
         routes: {
           [`${this.APP_BASE}${this.APP_DEST}`]: this.APP_DEST,
           [`${this.APP_BASE}node_modules`]: 'node_modules',

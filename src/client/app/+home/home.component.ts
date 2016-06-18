@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms/index';
 
 import { NameListService } from '../shared/index';
 
@@ -13,45 +13,25 @@ import { NameListService } from '../shared/index';
   styleUrls: ['home.component.css'],
   directives: [REACTIVE_FORM_DIRECTIVES]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  newName: string = '';
-  errorMessage: string;
-  names: any[] = [];
+  newName: string;
 
   /**
    * Creates an instance of the HomeComponent with the injected
    * NameListService.
    *
    * @param {NameListService} nameListService - The injected NameListService.
+   * @param {string[]} nameList - The injected NameListService.
    */
-  constructor(public nameListService: NameListService) {}
+  constructor(@Inject('nameList') public nameList: string[], public nameListService: NameListService) {}
 
   /**
-   * Get the names OnInit
-   */
-  ngOnInit() {
-    this.getNames();
-  }
-
-  /**
-   * Handle the nameListService observable
-   */
-  getNames() {
-    this.nameListService.get()
-                     .subscribe(
-                       names => this.names = names,
-                       error =>  this.errorMessage = <any>error
-                       );
-  }
-
-  /**
-   * Pushes a new name onto the names array
+   * Calls the add method of the NameListService with the current newName value of the form.
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
   addName(): boolean {
-    // TODO: implement nameListService.post
-    this.names.push(this.newName);
+    this.nameListService.add(this.newName);
     this.newName = '';
     return false;
   }
