@@ -3,8 +3,12 @@ import {HomeComponent} from './home.component';
 import {NameListService} from '../shared/index';
 import 'rxjs/add/operator/toPromise';
 
-const nameList = (nameListService: NameListService) => {
-  return nameListService.get().toPromise();
+const nameList = {
+  provide: 'nameList',
+  useFactory: (nameListService: NameListService) => {
+    return nameListService.get().toPromise();
+  },
+  deps: [NameListService]
 };
 
 // The home states
@@ -17,6 +21,6 @@ export let HOME_STATES: Ng2StateDeclaration[] = [
           component: HomeComponent
         }
       },
-      resolve: { nameList }
+      resolve: [ nameList ]
     }
 ];

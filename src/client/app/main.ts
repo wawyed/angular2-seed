@@ -6,7 +6,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { NameListService } from './shared/index';
 import {BrowserPlatformLocation} from '@angular/platform-browser';
 import {HTTP_PROVIDERS} from '@angular/http';
-import {UIROUTER_PROVIDERS, UIRouterConfig, UIROUTER_DIRECTIVES, UiView} from 'ui-router-ng2/ng2';
+import {UIROUTER_PROVIDERS, UIRouterConfig, UIROUTER_DIRECTIVES, UIView} from 'ui-router-ng2/ng2';
 import {MyUIRouterConfig} from './router.config';
 
 if ('<%= ENV %>' === 'prod') { enableProdMode(); }
@@ -15,7 +15,7 @@ if ('<%= ENV %>' === 'prod') { enableProdMode(); }
  * Bootstraps the application and makes the ROUTER_PROVIDERS and the APP_BASE_HREF available to it.
  * @see https://angular.io/docs/ts/latest/api/platform-browser-dynamic/index/bootstrap-function.html
  */
-bootstrap(UiView, [
+bootstrap(UIView, [
   disableDeprecatedForms(),
   provideForms(),
 
