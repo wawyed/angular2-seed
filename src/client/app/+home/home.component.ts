@@ -21,17 +21,17 @@ export class HomeComponent {
    * Creates an instance of the HomeComponent with the injected
    * NameListService.
    *
-   * @param {NameListService} nameListService - The injected NameListService.
    * @param {string[]} nameList - The injected NameListService.
    */
-  constructor(@Inject('nameList') public nameList: string[], public nameListService: NameListService) {}
+  constructor(@Inject('nameList') public nameList: string[]) {}
 
   /**
-   * Calls the add method of the NameListService with the current newName value of the form.
+   * Pushes a new name onto the names array
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
   addName(): boolean {
-    this.nameListService.add(this.newName);
+    // TODO: implement nameListService.post
+    this.nameList.push(this.newName);
     this.newName = '';
     return false;
   }
